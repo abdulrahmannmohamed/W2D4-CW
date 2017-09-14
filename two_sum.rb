@@ -11,9 +11,7 @@ def bad_two_sum?(arr, target)
   false
 end
 
-# arr = [0, 1, 5, 7]
-# p bad_two_sum?(arr, 6) # => should be true
-# p bad_two_sum?(arr, 10) #
+#Time complexity is n log(n)
 def okay_two_sum?(arr, target)
   arr.length.times do
     first = arr.shift
@@ -45,5 +43,23 @@ def bsearch(arr, target)
   end
 end
 
-# p bsearch([1,2,3,5,7], 3)
-p okay_two_sum?([1,2,3,4,5,7], 10)
+#time complexity is n
+def two_sum?(arr, target)
+  hsh = Hash.new(0)
+
+  arr.each do |el|
+    hsh[el] += 1
+  end
+
+  hsh.keys.each do |k|
+    if hsh[target - k] > 0
+      if target - k != k || hsh[k] > 1
+        return true
+      end
+    end
+  end
+
+  false
+end
+
+p two_sum?([1,1,2,3,3,4,5,7], 10)
